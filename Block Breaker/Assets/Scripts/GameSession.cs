@@ -10,6 +10,9 @@ public class GameSession : MonoBehaviour {
     [SerializeField] int pointsPerBlockDestroyed = 83;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] bool isAutoPlayEnabled;
+    [SerializeField] bool isPaused = false;
+    public GameObject pauseMenuUI;
+
 
     // state variables
     [SerializeField] int currentScore = 0;
@@ -35,7 +38,18 @@ public class GameSession : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Time.timeScale = gameSpeed;
+              if(Input.GetKeyDown("p") && !isPaused)
+    {
+       print("p");
+       Time.timeScale = 0;
+       isPaused = true;
+    }
+    else if(Input.GetKeyDown("p") && isPaused)
+    {
+       print("Unpaused");
+       Time.timeScale = 1;
+       isPaused = false;    
+    } 
 	}
 
     public void AddToScore()
